@@ -72,11 +72,26 @@ window.onload = function() {
                 }
                 turn++;
                 filled[num-1] = true;
+                
+                // 5. Winner check
+                var s = symbol[num-1];
+                for(var j = 0; j < winner.length; j++) {
+                    if((symbol[winner[j][0]] == s) && (symbol[winner[j][1]] == s) && (symbol[winner[j][2]] == s)) {
+                        document.getElementById("result").innerText = "Player '" + s + "' won!";
+                        gameover = true;
+                       }
+                }
+                
+                // draw condition
+                // turn > 0 gameover == false
+                if(turn > 9 && gameover != true) {
+                    document.getElementById("result").innerText = "GAME OVER! IT WAS A DRAW!";
+                }
             } else {
-                   
+                alert("Game is over. Please click the New Game button to start again.");   
             }
         } else {
-            
+            alert("This box was already filled. Please click on another one.");
         }
     }
     
